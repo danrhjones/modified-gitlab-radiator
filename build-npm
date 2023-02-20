@@ -1,0 +1,19 @@
+#!/bin/bash
+
+rm -fr build
+mkdir -p build/src
+
+# Copy static resources
+cp -r public build
+
+# Copy LICENSE, README and package.json
+cp LICENSE package.json README.md build
+
+# Copy bin script
+cp -r bin build
+
+# Bundle and minify client JS
+npx webpack --config webpack.prod.js
+
+# Transpile server
+node_modules/.bin/babel src --ignore **/client/*.js,**/dev-assets.js --out-dir build/src
