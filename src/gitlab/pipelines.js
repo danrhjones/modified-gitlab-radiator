@@ -6,13 +6,15 @@ export async function fetchLatestPipelines(projectId, gitlab) {
 
   return Promise.all(pipelines.map(async ({id, ref, status}) => {
     const {commit, stages} = await fetchJobs(projectId, id, gitlab)
-    const downstreamStages = await fetchDownstreamJobs(projectId, id, gitlab)
+    // const downstreamStages = await fetchDownstreamJobs(projectId, id, gitlab)
     return {
       id,
       ref,
       status,
       commit,
-      stages: stages.concat(downstreamStages)
+      // TODO causing problems with the self hosted gitlab instance so removed it
+      // stages: stages.concat(downstreamStages)
+      stages
     }
   }))
 }

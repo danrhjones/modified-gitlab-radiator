@@ -5,7 +5,7 @@
     "email": "heikki.pora@gmail.com"
   },
   "description": "The missing GitLab build radiator view",
-  "version": "1.0.3",
+  "version": "1.0.9",
   "license": "MIT",
   "bin": {
     "modified-gitlab-radiator": "bin/modified-gitlab-radiator"
@@ -13,6 +13,7 @@
   "scripts": {
     "build": "./build-npm",
     "start": "babel-node src/app.js",
+    "starter": "NODE_TLS_REJECT_UNAUTHORIZED=0 modified-gitlab-radiator",
     "eslint": "eslint --fix src/* bin/* test/*",
     "test": "mocha --require @babel/register --timeout 20000 test/*.js test/**/*.js"
   },
